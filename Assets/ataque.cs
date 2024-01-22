@@ -14,8 +14,9 @@ public class ataque : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-     cacto.transform.position=Vector3.MoveTowards(cacto.transform.position,player.transform.position,Time.deltaTime*velocidade);   
+     cacto.transform.position=Vector3.MoveTowards(cacto.transform.position,player.transform.position,Time.deltaTime*velocidade); 
+     cacto.transform.LookAt(player.transform.position);  
     }
 }

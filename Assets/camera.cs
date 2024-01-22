@@ -16,10 +16,10 @@ public class camera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
     visao.transform.position=player.transform.position+Offset;
-    Debug.Log(Input.GetAxis("Mouse X"));
+    //Debug.Log(Input.GetAxis("Mouse X"));
     player.transform.RotateAround(player.transform.position, Vector3.up,  Input.GetAxis("Mouse X"));
     visao.transform.position=player.transform.position-player.transform.forward*distancia+Vector3.up*altura;
     visao.transform.LookAt(player.transform.position);
