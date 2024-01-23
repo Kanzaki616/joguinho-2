@@ -6,6 +6,10 @@ public class walk : MonoBehaviour
 {
     public Animator anim;
     static readonly int WalkLFT = Animator.StringToHash("Mushroom_walkLFTSmile");
+    static readonly int WalkRGT = Animator.StringToHash("Mushroom_walkRGTSmile");
+    static readonly int WalkFWD = Animator.StringToHash("Mushroom_walkFWDSmile");
+    static readonly int WalkBWD = Animator.StringToHash("Mushroom_walkBWDSmile");
+    static readonly int JumpAnim = Animator.StringToHash("Mushroom_VictorySmile");
     public GameObject cube;
     public float pulo;
     RaycastHit hit;
@@ -14,36 +18,30 @@ public class walk : MonoBehaviour
     void Start()
     {    
      tempo=0;
-        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-       tempo-=Time.deltaTime;
-       if(tempo<0)
-       {
-        tempo=0;
-       }
        Vector3 botoes=new Vector3 (0,0,0);
        if(Input.GetKey(KeyCode.D))
        {
         botoes+=cube.transform.right;
-        anim.CrossFade("Mushroom_walkLFTSmile",0);
+        anim.CrossFade(WalkRGT,0);
        }
        if(Input.GetKey(KeyCode.A))
        {
         botoes-=cube.transform.right;
-        anim.CrossFade("Mushroom_walkRGTSmile",0);
+        anim.CrossFade(WalkLFT,0);
        }
         if(Input.GetKey(KeyCode.W))
        {
         botoes+=cube.transform.forward;
-        anim.CrossFade("Mushroom_walkFWDSmile",0);
+        anim.CrossFade(WalkFWD,0);
        }
        if(Input.GetKey(KeyCode.S))
        {
-        anim.CrossFade("Mushroom_walkBWDSmile",0);
+        anim.CrossFade(WalkBWD,0);
         botoes-=cube.transform.forward;
        }
        //Debug.Log(botoes);
@@ -56,13 +54,13 @@ public class walk : MonoBehaviour
        } 
        Debug.Log (tempo);
        Debug.Log (Input.GetKey(KeyCode.Space));
-       if(Input.GetKey(KeyCode.Space)&& hit.distance<0.51f&&tempo==0)
+       if(Input.GetKey(KeyCode.Space)&& hit.distance<0.51f&&tempo<=Time.time)
        {
         cube.GetComponent<Rigidbody>().AddForce(new Vector3 (0,pulo,0)); 
-        anim.CrossFade("Mushroom_VictorySmile",0);
+        anim.CrossFade(JumpAnim,0);
 
         //Debug.Log ("oi"); 
-        tempo=0.5f;
+        tempo=Time.time+0.5f;
        }
     }
 
