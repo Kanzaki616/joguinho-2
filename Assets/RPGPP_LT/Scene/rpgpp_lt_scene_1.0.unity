@@ -7433,6 +7433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaa5d3488e856242a02b47d936dde4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1779199178}
   cube: {fileID: 837854859}
   pulo: 500
 --- !u!54 &837854863
@@ -16545,6 +16546,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 837854863}
   m_SourcePrefab: {fileID: 100100000, guid: c3c76a247c7e43b19a40ebfcfefa8f19, type: 3}
+--- !u!95 &1779199178 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1691260113314563210, guid: c3c76a247c7e43b19a40ebfcfefa8f19, type: 3}
+  m_PrefabInstance: {fileID: 1779199177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1782578992 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1740273473050372, guid: 63ce2b31e16acab4d8a41f884c36333c, type: 3}

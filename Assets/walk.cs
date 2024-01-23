@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class walk : MonoBehaviour
 {
-  public Animator anim;
+    public Animator anim;
+    static readonly int WalkLFT = Animator.StringToHash("Mushroom_walkLFTSmile");
     public GameObject cube;
     public float pulo;
     RaycastHit hit;
