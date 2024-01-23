@@ -10,6 +10,7 @@ public class walk : MonoBehaviour
     static readonly int WalkFWD = Animator.StringToHash("Mushroom_walkFWDSmile");
     static readonly int WalkBWD = Animator.StringToHash("Mushroom_walkBWDSmile");
     static readonly int JumpAnim = Animator.StringToHash("Mushroom_VictorySmile");
+    static readonly int Idle = Animator.StringToHash("Mushroom_IdleNormalSmile");
     public GameObject cube;
     public float pulo;
     RaycastHit hit; 
@@ -25,6 +26,7 @@ public class walk : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+      animdesejada=Idle;
        Vector3 botoes=new Vector3 (0,0,0);
        if(Input.GetKey(KeyCode.D))
        {
@@ -65,13 +67,21 @@ public class walk : MonoBehaviour
         cube.GetComponent<Rigidbody>().AddForce(new Vector3 (0,pulo,0)); 
         //anim.CrossFade(JumpAnim,0);
         animdesejada=JumpAnim;
+        
 
         //Debug.Log ("oi"); 
         tempo=Time.time+0.5f;
        }
-       if (animatual!=animdesejada)
+       if (animatual!=animdesejada&&tempoanim<=Time.time)
        {
+        animatual=animdesejada;
         anim.CrossFade(animdesejada,0);
+        if (animatual==JumpAnim)
+        {
+          tempoanim=Time.time+1.5f;
+        } 
+          
+        
        }
     }
 
