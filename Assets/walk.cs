@@ -12,11 +12,13 @@ public class walk : MonoBehaviour
     static readonly int JumpAnim = Animator.StringToHash("Mushroom_VictorySmile");
     public GameObject cube;
     public float pulo;
-    RaycastHit hit;
-    float tempo; 
+    RaycastHit hit; 
+    float tempo, tempoanim;
+    int animatual,animdesejada;
     // Start is called before the first frame update
     void Start()
     {    
+     tempoanim=0;
      tempo=0;
     }
 
@@ -27,21 +29,25 @@ public class walk : MonoBehaviour
        if(Input.GetKey(KeyCode.D))
        {
         botoes+=cube.transform.right;
-        anim.CrossFade(WalkRGT,0);
+        //anim.CrossFade(WalkRGT,0);
+        animdesejada=WalkRGT;
        }
        if(Input.GetKey(KeyCode.A))
        {
         botoes-=cube.transform.right;
-        anim.CrossFade(WalkLFT,0);
+        //anim.CrossFade(WalkLFT,0);
+        animdesejada=WalkLFT;
        }
         if(Input.GetKey(KeyCode.W))
        {
         botoes+=cube.transform.forward;
-        anim.CrossFade(WalkFWD,0);
+        //anim.CrossFade(WalkFWD,0);
+        animdesejada=WalkFWD;
        }
        if(Input.GetKey(KeyCode.S))
        {
-        anim.CrossFade(WalkBWD,0);
+        //anim.CrossFade(WalkBWD,0);
+        animdesejada=WalkBWD;
         botoes-=cube.transform.forward;
        }
        //Debug.Log(botoes);
@@ -57,10 +63,15 @@ public class walk : MonoBehaviour
        if(Input.GetKey(KeyCode.Space)&& hit.distance<0.51f&&tempo<=Time.time)
        {
         cube.GetComponent<Rigidbody>().AddForce(new Vector3 (0,pulo,0)); 
-        anim.CrossFade(JumpAnim,0);
+        //anim.CrossFade(JumpAnim,0);
+        animdesejada=JumpAnim;
 
         //Debug.Log ("oi"); 
         tempo=Time.time+0.5f;
+       }
+       if (animatual!=animdesejada)
+       {
+        anim.CrossFade(animdesejada,0);
        }
     }
 
